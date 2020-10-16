@@ -1,5 +1,7 @@
 package com.example.couchbaselite_crud;
-
+import com.couchbase.lite.*;
+import android.content.Context;
+import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +24,7 @@ public class TareaDescription {
         btnDelete = findViewById(R.id.btnDelete);
         id = getIntent().getExtras().getString("id");
         CDBManager cdbManager = new CDBManager(getApplicationContext(),
-                "ugb","localhost","4545","admin","1234");
+                "ugb","localhost", "4545", "admin","1234");
         cdbManager.startDB();
         dao = new TareasDAO(cdbManager.database);
         Tareas tarea = dao.getById(id);
@@ -36,7 +38,7 @@ public class TareaDescription {
             btnDelete.setOnClickListener(this);
             btnUpdate.setOnClickListener(this);
         }else{
-            edtDescription.setEnable(false);
+            edtName.setEnable(false);
             edtDescription.setEnable(false);
             swtActive.setEnable(false);
             btnUpdate.setEnable(false);
@@ -56,10 +58,10 @@ public class TareaDescription {
                             Toast.LENGTH_LONG).show();
                     finish();
                 }else{
-                   Toast.makeText(TareaDescription.this, "Error",
-                           Toast.LENGTH_LONG).show();
+                    Toast.makeText(TareaDescription.this, "Error",
+                            Toast.LENGTH_LONG).show();
                 }
-                 break;
+                break;
             case R.id.btnUpdate:
                 Tareas tarea2 = new Tareas();
                 tarea2.id = id;
@@ -75,7 +77,8 @@ public class TareaDescription {
                             Toast.LENGTH_LONG).show();
                 }
                 break;
-              }
+        }
     }
+
 
 }

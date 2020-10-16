@@ -1,38 +1,31 @@
 package com.example.couchbaselite_crud;
 
 import android.util.Log;
-import org.w3c.dom.Document;
 
-import java.sql.ResultSet;
+import com.couchbase.lite.CouchbaseLiteException;
+import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Database;
+import com.couchbase.lite.Document;
+import com.couchbase.lite.Expression;
+import com.couchbase.lite.Meta;
+import com.couchbase.lite.MutableDocument;
+import com.couchbase.lite.Query;
+import com.couchbase.lite.QueryBuilder;
+import com.couchbase.lite.Result;
+import com.couchbase.lite.ResultSet;
+import com.couchbase.lite.SelectResult;
+
 import java.util.ArrayList;
 
-import javax.sql.DataSource;
-import javax.xml.transform.Result;
 
 public class TareasDAO {
     Database db;
 
     public TareasDAO(Database db){
+
         this.db = db;
     }
 
-
-
-    public Tareas getByID(String id){
-        Tareas tarea = new Tareas();
-        Log.i("getId", id);
-        Document tareaDoc = db.getDocument(id);
-        if(tareaDoc.contains("name")){
-            Log.i("getId", tareaDoc, getId());
-            tarea.setId(tareaDoc.getId());
-            tarea.setName(tareaDoc.getString("name"));
-            tarea.setActive(tareaDoc.getBoolean("active"));
-            tarea.setDescription(tareaDoc.getString("description"));
-        }else{
-            tarea = null;
-        }
-        return tarea;
-    }
 
     public boolean insert(Tareas tarea){
         MutableDocument mutableDoc = new MutableDocument()
@@ -43,21 +36,7 @@ public class TareasDAO {
         try {
             db.save(mutableDoc);
             return true;
-        } catch (CouchbaseLiteExeption e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public  boolean update (Tareas tarea){
-        MutableDocument mutableDoc = db.getDocument(tarea.getId()).toMutable();
-        mutableDoc.setString("name", tarea.name)
-                .setString("description",tarea.description)
-                .setBoolean("active", tarea.isActive());
-        try {
-            db.save(mutableDoc);
-            return true;
-        } catch (CouchbaseLiteExeption e){
+        } catch (CouchbaseLiteException e){
             e.printStackTrace();
         }
         return false;
@@ -74,6 +53,22 @@ public class TareasDAO {
         return false;
     }
 
+    public  boolean update (Tareas tarea){
+        MutableDocument mutableDoc = db.getDocument(tarea.getId()).toMutable();
+        mutableDoc.setString("name", tarea.name)
+                .setString("description",tarea.description)
+                .setBoolean("active", tarea.isActive());
+        try {
+            db.save(mutableDoc);
+            return true;
+        } catch (CouchbaseLiteException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
     public ArrayList<Tareas> getAll() {
         ArrayList<Tareas> tareas = new ArrayList<>();
         Query query = QueryBuilder.select(
@@ -83,9 +78,9 @@ public class TareasDAO {
                         Expression.property("type")
                         .equalTo(Expression.string("Tareas"))
                 );
-                try {
-                    ResultSet rs = query.execute();
-                    for (Result result : rs) {
+        try {
+             ResultSet rs = query.execute();
+             for (Result result: rs) {
                         Tareas tarea = new Tareas();
                         tarea.setName(result.getString("name"));
                         tarea.setDescription(result.getString("description"));
@@ -93,12 +88,28 @@ public class TareasDAO {
                         tarea.setId(result.getString("id"));
                         tareas.add(tarea);
                     }
-                }
-                    catch(CouchbaseLiteException e) {
+                }catch(CouchbaseLiteException e) {
                         e.printStackTrace();
                 }
                 return tareas;
-        )
 
+    }
+
+    //FALTA el getByState
+
+    public Tareas getById(String id){
+        Tareas tarea = new Tareas();
+        Log.i("getId", id);
+        Document tareaDoc = db.getDocument(id);
+        if(tareaDoc.contains("name")){
+            Log.i("getId", tareaDoc.getId());
+            tarea.setId(tareaDoc.getId());
+            tarea.setName(tareaDoc.getString("name"));
+            tarea.setActive(tareaDoc.getBoolean("active"));
+            tarea.setDescription(tareaDoc.getString("description"));
+        }else{
+            tarea = null;
+        }
+        return tarea;
     }
 }

@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,8 +28,8 @@ public class TareasAdapter extends RecyclerView.Adapter<TareasAdapter.MyViewHold
         return viewHolder;
     }
 
-
-    public void onBindViewHolder(@NonNull TareasAdapter.MyViewHolder ViewHolder int i) {
+    @Override
+      public void onBindViewHolder(@NonNull TareasAdapter.MyViewHolder viewHolder, int i) {
         Tareas tarea = tareas.get(i);
         viewHolder.txtId.setText(tarea.getId());
         viewHolder.txtName.setText(tarea.getName());

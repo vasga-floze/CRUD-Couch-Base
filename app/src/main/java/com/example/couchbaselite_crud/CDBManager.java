@@ -59,7 +59,7 @@ public class CDBManager {
 
     }
 
-    @Override
+
     public void changed(@NonNull ReplicatorChange change){
         if (change.getStatus().getError() !=null){
             Log.i("Error", "Error code :: "

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,11 @@ public class ListadoTareas extends Activity {
         TareasDAO dao = new TareasDAO(cdbManager.database);
         ArrayList<Tareas> tareas = dao.getAll();
 
+        TareasAdapter adapter = new TareasAdapter(tareas);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -37,7 +43,7 @@ public class ListadoTareas extends Activity {
 
         TareasAdapter adapter = new TareasAdapter(tareas);
         recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixed(true);
+        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
     }
