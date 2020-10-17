@@ -5,12 +5,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-
-
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class CDBManager {
+public class CDBManager implements ReplicatorChangeListener {
     String db;
     String server;
     String port;
@@ -27,8 +25,6 @@ public class CDBManager {
         this.port=port;
         this.user=user;
         this.pass=pass;
-
-
     }
 
     public void startDB(){
@@ -37,7 +33,6 @@ public class CDBManager {
             this.database = new Database(db, config);
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -55,8 +50,6 @@ public class CDBManager {
         replConfig.setAuthenticator(new BasicAuthenticator(user, pass));
         Replicator replicator = new Replicator(replConfig);
         replicator.start();
-
-
     }
 
 

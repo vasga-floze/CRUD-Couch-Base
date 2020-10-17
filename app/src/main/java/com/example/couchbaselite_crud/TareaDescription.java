@@ -1,7 +1,5 @@
 package com.example.couchbaselite_crud;
-import com.couchbase.lite.*;
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +7,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class TareaDescription {
+public class TareaDescription extends Activity implements View.OnClickListener {
+
     String id = "";
     Switch swtActive;
     Button btnDelete, btnUpdate;
@@ -38,11 +37,11 @@ public class TareaDescription {
             btnDelete.setOnClickListener(this);
             btnUpdate.setOnClickListener(this);
         }else{
-            edtName.setEnable(false);
-            edtDescription.setEnable(false);
-            swtActive.setEnable(false);
-            btnUpdate.setEnable(false);
-            btnDelete.setEnable(false);
+            edtName.setEnabled(false);
+            edtDescription.setEnabled(false);
+            swtActive.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
         }
     }
 
@@ -79,6 +78,4 @@ public class TareaDescription {
                 break;
         }
     }
-
-
 }

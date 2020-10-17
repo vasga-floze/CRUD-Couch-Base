@@ -1,4 +1,5 @@
 package com.example.couchbaselite_crud;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,21 +8,27 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends Activity implements View.OnClickListener{
 
     Switch swtState;
     EditText edtName, edtDesc;
+    Button btnCrear;
+    Button btnVer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CDBManager cdbManager = new CDBManager(
-                getApplicationContext(), "ugb", "localhost",
-                "4984", "admin", "1234");
-        cdbManager.startDB();
-        cdbManager.startReplication();
+        edtName = (EditText) findViewById(R.id.edtName);
+        edtDesc = (EditText)findViewById(R.id.edtDescription);
+        btnCrear = (Button)findViewById(R.id.btnCrear);
+        btnVer = (Button)findViewById(R.id.btnVer);
+        swtState=(Switch)findViewById(R.id.swtState);
+        btnCrear.setOnClickListener(this);
+        btnVer.setOnClickListener(this);
+        swtState.setOnClickListener(this);
+
     }
 
 
@@ -48,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Error al insertar",
                             Toast.LENGTH_LONG).show();
                 }
+                edtName.setText("");
+                edtDesc.setText("");
             case R.id.btnVer:
                 Intent i = new Intent(MainActivity.this, ListadoTareas.class);
                 startActivity(i);

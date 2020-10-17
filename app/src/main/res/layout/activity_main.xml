@@ -10,12 +10,12 @@
         android:id="@+id/edtName"
         android:layout_width="234dp"
         android:layout_height="56dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Activity name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -37,7 +37,7 @@
         android:id="@+id/swtState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="100dp"
         android:textOff="OFF"
         android:textOn="ON"
         app:layout_constraintBottom_toTopOf="@+id/btnCrear"
