@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "604376187612",
+    "firebase_url": "https://apt-muse-261713.firebaseio.com",
+    "project_id": "apt-muse-261713",
+    "storage_bucket": "apt-muse-261713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604376187612:android:5e4a85b550150866456a19",
+        "android_client_info": {
+          "package_name": "com.example.couchbaselite_crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604376187612-oqnfgaamagpqnrsb75rlctpdd7ib93mr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJd39t6Y4xks0pDO7B55cdvmSLKPdUZ0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604376187612-oqnfgaamagpqnrsb75rlctpdd7ib93mr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

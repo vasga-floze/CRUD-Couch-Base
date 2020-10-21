@@ -7,7 +7,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class TareaDescription extends Activity implements View.OnClickListener {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TareaDescription extends AppCompatActivity implements View.OnClickListener {
 
     String id = "";
     Switch swtActive;
